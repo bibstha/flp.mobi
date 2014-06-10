@@ -1,11 +1,3 @@
-##### "What's this?"
-
-A toolchain to build a collection of MOBIs from Caltech's new [online edition
-of the Feynman Lectures](http://www.feynmanlectures.caltech.edu/), so you can
-read them offline on your Kindle. We use EPUB as an intermediate
-representation, so likelihood is you'll get something working on your
-iPocketKoboNook too.
-
 ##### "How do I run it?"
 
     % make
