@@ -3,6 +3,7 @@ v=I
 prereqs=zip bundle wget ebook-convert
 vols=I II III
 root=http://www.feynmanlectures.caltech.edu/
+useragent=Mozilla/5.0
 
 all: test-prereqs I_01.html II_01.html III_01.html
 	for volume in $(vols); do \
@@ -14,9 +15,9 @@ test-prereqs:
 
 %.html: 
 	for volume in $(vols); do \
-		curl -s "$(root)""$$volume"_toc.html\
+		curl --user-agent $(useragent) -s "$(root)""$$volume"_toc.html\
 			| awk -F'[,)]' '/Goto.*Chapter/{printf "%02d\n", $$2}'\
-			| xargs -I, wget -e robots=off -c -rnH -k -np "$(root)""$$volume""_,.html";\
+			| xargs -I, wget --user-agent=$(useragent) -e robots=off -c -rnH -k -np "$(root)""$$volume""_,.html";\
 	done; true
 
 gems: Gemfile
